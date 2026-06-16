@@ -9,35 +9,37 @@ export function generateStaticParams() {
   return getAllContentSlugs().map((slug) => ({ slug }))
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
-}): Metadata {
-  const stage = getStage(params.slug)
-  const doc = getStageDoc(params.slug)
-  const title = (doc?.data.title as string) ?? stage?.title ?? params.slug
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const stage = getStage(slug)
+  const doc = getStageDoc(slug)
+  const title = (doc?.data.title as string) ?? stage?.title ?? slug
   return {
     title: `${title} — CLAUDE CODE ARCADE`,
     description: stage?.blurb,
   }
 }
 
-export default function StageDocPage({
+export default async function StageDocPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const doc = getStageDoc(params.slug)
+  const { slug } = await params
+  const doc = getStageDoc(slug)
   if (!doc) notFound()
 
-  const stage = getStage(params.slug)
-  const index = STAGES.findIndex((s) => s.slug === params.slug)
+  const stage = getStage(slug)
+  const index = STAGES.findIndex((s) => s.slug === slug)
   const prev = index > 0 ? STAGES[index - 1] : null
   const next =
     index >= 0 && index < STAGES.length - 1 ? STAGES[index + 1] : null
 
-  const title = (doc.data.title as string) ?? stage?.title ?? params.slug
+  const title = (doc.data.title as string) ?? stage?.title ?? slug
   const subtitle = (doc.data.subtitle as string) ?? stage?.blurb
 
   return (

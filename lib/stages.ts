@@ -49,6 +49,13 @@ export const STAGES: Stage[] = [
     color: 'pink',
   },
   {
+    slug: 'stage-6-subagents',
+    level: 'STAGE 6',
+    title: '서브에이전트 만들기',
+    blurb: '전문 분야가 다른 파티원을 소환해 일을 위임한다.',
+    color: 'orange',
+  },
+  {
     slug: 'boss-team',
     level: 'BOSS',
     title: '팀이랑 같이 쓸 때',
