@@ -29,7 +29,8 @@
   body {
     background-color: var(--color-bg);
     color: #e8e8e8;
-    font-family: var(--font-ibm-plex-mono), monospace;
+    /* Latin/code → Plex Mono; Korean glyphs fall through to Noto Sans KR */
+    font-family: var(--font-ibm-plex-mono), var(--font-noto-sans-kr), monospace;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -102,6 +103,28 @@
     color: transparent;
   }
 
+  /* Stronger gradient + neon bloom. Compose on top of .text-gradient-title.
+     drop-shadow follows the glyph silhouette, so it glows even though the
+     text fill is transparent (text-shadow would not show here). */
+  .text-gradient-title-glow {
+    background-size: 220% 220%;
+    animation: title-gradient-shift 6s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 6px rgba(255, 45, 120, 0.55))
+      drop-shadow(0 0 14px rgba(184, 41, 255, 0.45))
+      drop-shadow(0 0 24px rgba(255, 107, 0, 0.22));
+  }
+
+  /* Subtle page-scoped scanline texture (much fainter than the global CRT) */
+  .scanline-bg {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  }
+
   /* Neon glow border card */
   .arcade-card {
     background-color: var(--color-surface);
@@ -112,6 +135,21 @@
   }
   .arcade-card:hover {
     transform: translateY(-2px);
+  }
+}
+
+@keyframes title-gradient-shift {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-title-glow {
+    animation: none;
   }
 }
 
@@ -126,7 +164,7 @@
 .arcade-prose h1,
 .arcade-prose h2,
 .arcade-prose h3 {
-  font-family: var(--font-press-start-2p), cursive;
+  font-family: var(--font-press-start-2p), var(--font-noto-sans-kr), cursive;
   line-height: 1.5;
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;

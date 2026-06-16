@@ -21,8 +21,16 @@ const config: Config = {
         },
       },
       fontFamily: {
-        arcade: ['var(--font-press-start-2p)', 'cursive'],
-        mono: ['var(--font-ibm-plex-mono)', 'monospace'],
+        arcade: [
+          'var(--font-press-start-2p)',
+          'var(--font-noto-sans-kr)',
+          'cursive',
+        ],
+        mono: [
+          'var(--font-ibm-plex-mono)',
+          'var(--font-noto-sans-kr)',
+          'monospace',
+        ],
       },
       boxShadow: {
         'neon-pink': '0 0 16px var(--color-neon-pink)',

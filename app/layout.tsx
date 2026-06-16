@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Press_Start_2P, IBM_Plex_Mono } from 'next/font/google'
+import { Press_Start_2P, IBM_Plex_Mono, Noto_Sans_KR } from 'next/font/google'
 import Link from 'next/link'
 import Scanline from '@/components/Scanline'
 import '../styles/globals.css'
@@ -16,6 +16,17 @@ const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
   variable: '--font-ibm-plex-mono',
   display: 'swap',
+})
+
+// Korean body fallback. `subsets: ['latin']` controls preload only —
+// Google's @font-face rules still cover Korean unicode-ranges, fetched
+// on demand. preload:false avoids preloading the large CJK file.
+const notoSansKR = Noto_Sans_KR({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-noto-sans-kr',
+  display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -35,7 +46,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko" className={`${pressStart.variable} ${plexMono.variable}`}>
+    <html
+      lang="ko"
+      className={`${pressStart.variable} ${plexMono.variable} ${notoSansKR.variable}`}
+    >
       <body className="min-h-screen antialiased">
         <Scanline />
 

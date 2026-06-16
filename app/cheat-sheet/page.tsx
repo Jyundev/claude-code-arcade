@@ -45,12 +45,12 @@ const SLASH: CheatRow[] = [
 
 export default function CheatSheetPage() {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="scanline-bg flex flex-col gap-12">
       <header className="flex flex-col gap-4">
         <span className="font-arcade text-[9px] tracking-[0.3em] text-neon-yellow">
           CONTINUE? · PRESS ANY KEY
         </span>
-        <h1 className="text-gradient-title font-arcade text-2xl leading-[1.4] sm:text-3xl">
+        <h1 className="text-gradient-title text-gradient-title-glow font-arcade text-2xl leading-[1.4] sm:text-3xl">
           CHEAT SHEET
         </h1>
         <p className="max-w-xl text-sm leading-relaxed text-neutral-400">

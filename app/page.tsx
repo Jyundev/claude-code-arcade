@@ -1,6 +1,6 @@
-import StageCard from '@/components/StageCard'
-import PixelButton from '@/components/PixelButton'
-import { STAGES } from '@/lib/stages'
+import PixelButton from "@/components/PixelButton";
+import StageCard from "@/components/StageCard";
+import { STAGES } from "@/lib/stages";
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
         </h1>
 
         <p className="max-w-md text-base text-neutral-300 sm:text-lg">
-          &quot;~해줘&quot; 말고,{' '}
+          &quot;~해줘&quot; 말고,{" "}
           <span className="text-neon-yellow">제대로 써보자.</span>
         </p>
 
@@ -61,5 +61,5 @@ export default function Home() {
         </div>
       </section>
     </div>
-  )
+  );
 }
